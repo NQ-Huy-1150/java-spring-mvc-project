@@ -23,19 +23,24 @@ public class UserController {
         model.addAttribute("hoidanit", "from controller with model");
         return "hello";
     }
+
+    @RequestMapping("/admin/user")
+    public String getAdminPage() {
+        return "client/admin/user/create";
+    }
 }
 
 // @RestController
 // public class UserController {
 
-//     private UserService userService;
+// private UserService userService;
 
-//     public UserController(UserService userService) {
-//         this.userService = userService;
-//     }
+// public UserController(UserService userService) {
+// this.userService = userService;
+// }
 
-//     @RequestMapping("")
-//     public String getHomePage() {
-//         return this.userService.handleHello();
-//     }
+// @RequestMapping("")
+// public String getHomePage() {
+// return this.userService.handleHello();
+// }
 // }
