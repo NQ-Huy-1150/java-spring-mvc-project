@@ -31,9 +31,15 @@ public class UserController {
     }
 
     @RequestMapping("/admin/user")
+    public String getUserPanel(Model model) {
+        model.addAttribute("newUser", new User());
+        return "admin/user/UserTable";
+    }
+
+    @RequestMapping("/admin/user/create")
     public String getUserPage(Model model) {
         model.addAttribute("newUser", new User());
-        return "admin/user/create";
+        return "admin/user/create/create";
     }
 
     @RequestMapping(value = "/admin/user/create1", method = RequestMethod.POST)
