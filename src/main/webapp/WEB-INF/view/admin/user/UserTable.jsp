@@ -18,41 +18,44 @@
 
             <body>
                 <div class="container mt-md-5 mx-auto">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between border-bottom">
                         <h1>Table Users</h1>
-                        <a class="btn btn-primary text-center pb-md-0"
-                            href="http://localhost:8080/admin/user/create">Create a
-                            user</a>
+                        <a class="btn btn-primary" href="http://localhost:8080/admin/user/create">Create a user</a>
                     </div>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="mt-md-3">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Full Name</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-success">View</button>
+                                        <button class="btn btn-primary btn-warning">Update</button>
+                                        <button class="btn btn-primary btn-danger">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-success">View</button>
+                                        <button class="btn btn-primary btn-warning">Update</button>
+                                        <button class="btn btn-primary btn-danger">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </body>
 
