@@ -22,7 +22,7 @@
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-md-6 col-12 mx-auto">
-                            <form:form method="post" action="/admin/user/create1" modelAttribute="newUser">
+                            <form:form method="post" action="/admin/user/create" modelAttribute="newUser">
                                 <h1>Create a user</h1>
                                 <div class="mb-3">
                                     <label class="form-label">Email address:</label>
