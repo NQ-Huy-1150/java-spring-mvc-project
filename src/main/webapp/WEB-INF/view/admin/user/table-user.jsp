@@ -22,7 +22,7 @@
                         <div class="col-12 mx-auto">
                             <div class="d-flex justify-content-between">
                                 <h1>Table Users</h1>
-                                <a class="btn btn-primary" href="http://localhost:8080/admin/user/create">Create a
+                                <a class="btn btn-primary" href="/admin/user/create">Create a
                                     user</a>
                             </div>
 
@@ -44,9 +44,11 @@
                                             <td>${user.email}</td>
                                             <td>${user.fullName}</td>
                                             <td>
-                                                <button class="btn btn-primary btn-success">View</button>
-                                                <button class="btn btn-primary btn-warning mx-2">Update</button>
-                                                <button class="btn btn-primary btn-danger">Delete</button>
+                                                <a href="/admin/user/${user.id}"
+                                                    class="btn btn-primary btn-success">View</a>
+                                                <a href="/admin/user/update/${user.id}"
+                                                    class="btn btn-primary btn-warning mx-2">Update</a>
+                                                <a class="btn btn-primary btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

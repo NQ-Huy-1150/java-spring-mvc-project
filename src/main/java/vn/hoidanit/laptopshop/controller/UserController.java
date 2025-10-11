@@ -5,12 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.view.RedirectView;
 
 import vn.hoidanit.laptopshop.domain.User;
-import vn.hoidanit.laptopshop.repository.UserRepository;
 import vn.hoidanit.laptopshop.service.UserService;
 
 @Controller
@@ -39,18 +38,42 @@ public class UserController {
         return "admin/user/table-user";
     }
 
+    @RequestMapping("/admin/user/{id}")
+    public String getUserDetailPage(Model model, @PathVariable long id) {
+        System.out.println("check path id = " + id);
+        User user = this.userService.getUserById(id);
+        System.out.println("catch user here: " + user);
+
+        model.addAttribute("user", user);
+        return "admin/user/show";
+    }
+
     @RequestMapping("/admin/user/create")
     public String getCreateUserPage(Model model) {
-        model.addAttribute("newUser", new User());
+        model.addAttribute("updateUser", new User());
         return "admin/user/create";
     }
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String getUserCreate(@ModelAttribute("newUser") User hoidanit) {
+    public String getUserCreate(@ModelAttribute("updateUser") User hoidanit) {
         this.userService.handleSaveUser(hoidanit);
         return "redirect:/admin/user";
     }
 
+    @RequestMapping("/admin/user/update/{id}")
+    public String updateUserPage(Model model, @PathVariable long id) {
+        System.out.println("check path id = " + id);
+        User user = this.userService.getUserById(id);
+        System.out.println("catch user here: " + user);
+        model.addAttribute("updateUser", user);
+        return "admin/user/update";
+    }
+
+    @RequestMapping(value = "/admin/user/update", method = RequestMethod.POST)
+    public String getUserUpdate(@ModelAttribute("updateUser") User hoidanit) {
+        this.userService.handleSaveUser(hoidanit);
+        return "redirect:/admin/user";
+    }
 }
 
 // @RestController
