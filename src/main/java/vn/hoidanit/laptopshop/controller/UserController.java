@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -69,11 +70,24 @@ public class UserController {
         return "admin/user/update";
     }
 
-    @RequestMapping(value = "/admin/user/update", method = RequestMethod.POST)
+    @PostMapping("/admin/user/update")
     public String getUserUpdate(@ModelAttribute("updateUser") User hoidanit) {
-        this.userService.handleSaveUser(hoidanit);
+        User currentUser = this.userService.getUserById(hoidanit.getId());
+        if (currentUser != null) {
+            currentUser.setAddress(hoidanit.getAddress());
+            currentUser.setFullName(hoidanit.getFullName());
+            currentUser.setPhone(hoidanit.getPhone());
+
+            this.userService.handleSaveUser(hoidanit);
+        }
         return "redirect:/admin/user";
     }
+
+    // @RequestMapping(value = "/admin/user/update", method = RequestMethod.POST)
+    // public String getUserUpdate(@ModelAttribute("updateUser") User hoidanit) {
+    // this.userService.handleSaveUser(hoidanit);
+    // return "redirect:/admin/user";
+    // }
 }
 
 // @RestController
