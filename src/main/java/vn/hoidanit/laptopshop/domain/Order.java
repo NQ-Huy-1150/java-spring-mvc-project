@@ -1,11 +1,15 @@
 package vn.hoidanit.laptopshop.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +26,17 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    // many-to-many
+    // @ManyToMany
+    // @JoinTable(name = "oder_products", joinColumns = { @JoinColumn(name =
+    // "oder_id") }, inverseJoinColumns = {
+    // @JoinColumn(name = "product_id") })
+    // private List<Product> products;
+
+    // 1 order -> many to -> many order_detail
+    @OneToMany(mappedBy = "order")
+    private List<Order_detail> order_details;
 
     public long getId() {
         return id;
