@@ -31,10 +31,6 @@ public class Product {
     // @ManyToMany(mappedBy = "products")
     // private List<Order> orders;
 
-    // one product -> belongs to -> many order_detail
-    @OneToMany(mappedBy = "product")
-    private List<Order_detail> order_details;
-
     public long getId() {
         return id;
     }
