@@ -13,7 +13,6 @@
                 <title>Create User - Hỏi Dân IT</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
                 <script>
                     $(document).ready(() => {
                         const avatarFile = $("#avatarFile");
@@ -24,9 +23,7 @@
                         });
                     });
                 </script>
-
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
             </head>
 
             <body class="sb-nav-fixed">
@@ -47,7 +44,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-12 mx-auto">
                                             <form:form method="post" action="/admin/user/create"
-                                                modelAttribute="newUser" class="row g-3">
+                                                modelAttribute="newUser" class="row g-3" enctype="multipart/form-data">
                                                 <h3>Create a user</h3>
                                                 <div class="mb-2 col-12 col-md-6">
                                                     <label class="form-label">Email address:</label>
@@ -71,15 +68,15 @@
                                                 </div>
                                                 <div class="mb-2 col-12 col-md-6">
                                                     <label class="form-label">Role:</label>
-                                                    <select class="form-select">
-                                                        <option selected>ADMIN</option>
-                                                        <option>USER</option>
-                                                    </select>
+                                                    <form:select class="form-select" path="role.name">
+                                                        <form:option value="ADMIN">ADMIN</form:option>
+                                                        <form:option value="USER">USER</form:option>
+                                                    </form:select>
                                                 </div>
                                                 <div class="mb-2 col-12 col-md-6">
                                                     <label for="avatarFile" class="form-label">Avatar:</label>
                                                     <input class="form-control" type="file" id="avatarFile"
-                                                        accept=".png, .jpg, .jpeg">
+                                                        accept=".png, .jpg, .jpeg" name="hoidanitFile" />
                                                 </div>
                                                 <div class="col-12 mb-3">
                                                     <img style="max-height: 250px ;display: none;" alt="avatar Preview"
