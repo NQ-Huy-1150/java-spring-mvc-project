@@ -55,7 +55,7 @@
                                                         <th scope="row">${user.id}</th>
                                                         <td>${user.email}</td>
                                                         <td>${user.fullName}</td>
-                                                        <td>${user.role.getName()}</td>
+                                                        <td>${user.role.name}</td>
                                                         <td>
                                                             <a href="/admin/user/${user.id}"
                                                                 class="btn btn-primary btn-success">View</a>
