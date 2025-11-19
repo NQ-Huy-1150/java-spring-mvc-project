@@ -84,18 +84,20 @@ public class UserController {
     @RequestMapping("/admin/user/update/{id}")
     public String updateUserPage(Model model, @PathVariable long id) {
         User user = this.userService.getUserById(id);
+        System.out.println("User role : " + user.getRole().getName());
         model.addAttribute("updateUser", user);
         return "admin/user/update";
     }
 
     @PostMapping("/admin/user/update")
     public String getUserUpdate(@ModelAttribute("updateUser") User hoidanit) {
+
         User currentUser = this.userService.getUserById(hoidanit.getId());
         if (currentUser != null) {
             currentUser.setAddress(hoidanit.getAddress());
             currentUser.setFullName(hoidanit.getFullName());
             currentUser.setPhone(hoidanit.getPhone());
-
+            currentUser.setRole(this.userService.getRoleByName(hoidanit.getRole().getName()));
             this.userService.handleSaveUser(currentUser);
         }
         return "redirect:/admin/user";
