@@ -13,7 +13,24 @@
                 <title>Create User - Hỏi Dân IT</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                <script>
+                    $(document).ready(() => {
+                        const avatarFile = $("#avatarFile");
+                        const orgImage = "${updateUser.avatar}";
 
+                        if (orgImage) {
+                            const urlImage = "/images/avatar/" + orgImage;
+                            $("#avatarPreview").attr("src", urlImage);
+                            $("#avatarPreview").css({ "display": "block" });
+                        }
+                        avatarFile.change(function (e) {
+                            const imgURL = URL.createObjectURL(e.target.files[0]);
+                            $("#avatarPreview").attr("src", imgURL);
+                            $("#avatarPreview").css({ "display": "block" });
+                        });
+                    });
+                </script>
             </head>
 
             <body class="sb-nav-fixed">
@@ -34,31 +51,38 @@
                                     <div class="row">
                                         <div class="col-md-6 col-12 mx-auto">
                                             <form:form method="post" action="/admin/user/update"
-                                                modelAttribute="updateUser">
+                                                modelAttribute="updateUser" class="row g-3"
+                                                enctype="multipart/form-data">
                                                 <h1>Update a user</h1>
                                                 <hr>
-                                                <div class="mb-3" style="display: none;">
+                                                <div class="mb-3 col-12" style="display: none;">
                                                     <label class="form-label">Id:</label>
                                                     <form:input type="text" class="form-control" path="id" />
                                                 </div>
 
-                                                <div class="mb-3">
+                                                <div class="mb-3 col-12">
                                                     <label class="form-label">Email address:</label>
-                                                    <form:input type="email" class="form-control" path="Email"
-                                                        disabled="true" />
+                                                    <form:input type="email" class="form-control" path="email"
+                                                        readonly="true" />
                                                 </div>
 
-                                                <div class="mb-3">
+                                                <div class="mb-3 col-12">
                                                     <label class="form-label">Phone Number:</label>
                                                     <form:input type="text" class="form-control" path="phone" />
                                                 </div>
-                                                <div class="mb-3">
+                                                <div class="mb-3 col-12">
+                                                    <c:set var="fullNameError">
+                                                        <form:errors path="fullName" cssClass="invalid-feedback" />
+                                                    </c:set>
                                                     <label class="form-label">Full Name:</label>
-                                                    <form:input type="text" class="form-control" path="fullName" />
+                                                    <form:input type="text"
+                                                        class="form-control ${not empty fullNameError ? 'is-invalid' : ''}"
+                                                        path="fullName" />
+                                                    ${fullNameError}
                                                 </div>
-                                                <div class="mb-3">
+                                                <div class="mb-3 col-12">
                                                     <label class="form-label">Address:</label>
-                                                    <form:input type="text" class="form-control" path="Address" />
+                                                    <form:input type="text" class="form-control" path="address" />
                                                 </div>
 
                                                 <div class="mb-3 col-12 col-md-6">
@@ -67,6 +91,15 @@
                                                         <form:option value="ADMIN">ADMIN</form:option>
                                                         <form:option value="USER">USER</form:option>
                                                     </form:select>
+                                                </div>
+                                                <div class="mb-3 col-12 col-md-6">
+                                                    <label for="avatarFile" class="form-label">Avatar:</label>
+                                                    <input class="form-control" type="file" id="avatarFile"
+                                                        accept=".png, .jpg, .jpeg" name="hoidanitFile" />
+                                                </div>
+                                                <div class="col-12 mb-3">
+                                                    <img style="max-height: 250px ;display: none;" alt="avatar Preview"
+                                                        id="avatarPreview">
                                                 </div>
                                                 <button type="submit"
                                                     class="btn btn-primary btn-warning">Update</button>

@@ -54,7 +54,7 @@
                                                     <label class="form-label">Email address:</label>
                                                     <form:input type="email"
                                                         class="form-control ${not empty emailError ? 'is-invalid' : ''}"
-                                                        path="Email" />
+                                                        path="email" />
                                                     ${emailError}
                                                 </div>
                                                 <div class="mb-2 col-12 col-md-6">
@@ -67,7 +67,7 @@
                                                     <label class="form-label">Password:</label>
                                                     <form:input type="password"
                                                         class="form-control ${not empty passwordError ? 'is-invalid' : ''}"
-                                                        path="Password" />
+                                                        path="password" />
                                                     ${passwordError}
 
                                                 </div>
@@ -89,7 +89,7 @@
                                                 </div>
                                                 <div class="mb-2 col-12">
                                                     <label class="form-label">Address:</label>
-                                                    <form:input type="text" class="form-control" path="Address" />
+                                                    <form:input type="text" class="form-control" path="address" />
                                                 </div>
                                                 <div class="mb-2 col-12 col-md-6">
                                                     <label class="form-label">Role:</label>

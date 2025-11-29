@@ -32,7 +32,7 @@
                                 <div class="row">
                                     <div class="col-12 mx-auto">
                                         <div class="d-flex justify-content-between">
-                                            <h3>Table Users</h3>
+                                            <h3>Table Products</h3>
                                             <a class="btn btn-primary" href="/admin/product/create">Create a
                                                 product</a>
                                         </div>
@@ -50,22 +50,23 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- <c:forEach var="user" items="${users1}">
+                                                <c:forEach var="product" items="${products}">
                                                     <tr>
-                                                        <th scope="row">${user.id}</th>
-                                                        <td>${user.email}</td>
-                                                        <td>${user.fullName}</td>
-                                                        <td>${user.role.name}</td>
+                                                        <th scope="row">${product.id}</th>
+                                                        <td>${product.name}</td>
+                                                        <td>${product.price}</td>
+                                                        <td>${product.factory}</td>
+
                                                         <td>
-                                                            <a href="/admin/user/${user.id}"
+                                                            <a href="/admin/product/${product.id}"
                                                                 class="btn btn-primary btn-success">View</a>
-                                                            <a href="/admin/user/update/${user.id}"
+                                                            <a href="/admin/product/update/${product.id}"
                                                                 class="btn btn-primary btn-warning mx-2">Update</a>
-                                                            <a href="/admin/user/delete/${user.id}"
+                                                            <a href="/admin/product/delete/${product.id}"
                                                                 class="btn btn-primary btn-danger">Delete</a>
                                                         </td>
                                                     </tr>
-                                                </c:forEach> -->
+                                                </c:forEach>
 
                                             </tbody>
                                         </table>

@@ -10,14 +10,21 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
                 <meta name="author" content="Hỏi Dân IT" />
-                <title>Create Product - Hỏi Dân IT</title>
+                <title>Create User - Hỏi Dân IT</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                 <script>
                     $(document).ready(() => {
                         const avatarFile = $("#productFile");
+                        const orgImage = "${updateProduct.image}";
+
+                        if (orgImage) {
+                            const urlImage = "/images/product/" + orgImage;
+                            $("#avatarPreview").attr("src", urlImage);
+                            $("#avatarPreview").css({ "display": "block" });
+                        }
+
                         avatarFile.change(function (e) {
                             const imgURL = URL.createObjectURL(e.target.files[0]);
                             $("#avatarPreview").attr("src", imgURL);
@@ -25,7 +32,6 @@
                         });
                     });
                 </script>
-
             </head>
 
             <body class="sb-nav-fixed">
@@ -46,12 +52,16 @@
                                     <div class="row">
                                         <div class="col-md-6 col-12 mx-auto">
                                             <form:form method="post" action="/admin/product/create"
-                                                modelAttribute="newProduct" class="row g-3"
+                                                modelAttribute="updateProduct" class="row g-3"
                                                 enctype="multipart/form-data">
-                                                <h3>Create a Product</h3>
+                                                <h3>Update a Product</h3>
 
                                                 <hr />
                                                 <div class="mb-2 col-12 col-md-6">
+                                                    <div class="mb-3 col-12" style="display: none;">
+                                                        <label class="form-label">Id:</label>
+                                                        <form:input type="text" class="form-control" path="id" />
+                                                    </div>
                                                     <c:set var="nameError">
                                                         <form:errors path="name" cssClass="invalid-feedback" />
                                                     </c:set>
@@ -66,7 +76,7 @@
                                                         <form:errors path="price" cssClass="invalid-feedback" />
                                                     </c:set>
                                                     <label class="form-label">Price:</label>
-                                                    <form:input type="number"
+                                                    <form:input type="text"
                                                         class="form-control ${not empty priceError ? 'is-invalid' : ''}"
                                                         path="price" />
                                                     ${priceError}
@@ -92,14 +102,8 @@
                                                     ${shortDescError}
                                                 </div>
                                                 <div class="mb-2 col-12 col-md-6">
-                                                    <c:set var="quantityError">
-                                                        <form:errors path="quantity" cssClass="invalid-feedback" />
-                                                    </c:set>
                                                     <label class="form-label">Quantity:</label>
-                                                    <form:input type="number"
-                                                        class="form-control  ${not empty quantityError ? 'is-invalid' : ''}"
-                                                        path="quantity" />
-                                                    ${quantityError}
+                                                    <form:input type="number" class="form-control" path="quantity" />
                                                 </div>
                                                 <div class="mb-2 col-12 col-md-6">
                                                     <label class="form-label">Factory:</label>
@@ -135,13 +139,12 @@
                                                         id="avatarPreview">
                                                 </div>
                                                 <div class="col-12 mb-5">
-                                                    <button type="submit" class="btn btn-primary">Create</button>
+                                                    <button type="submit" class="btn btn-warning">Update</button>
                                                 </div>
                                             </form:form>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </main>
                         <jsp:include page="../layout/footer.jsp" />

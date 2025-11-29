@@ -70,7 +70,7 @@ public class UserController {
 
         // validate
         if (newUserBindingResult.hasErrors()) {
-            return "/admin/user/create";
+            return "admin/user/create";
         }
 
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
@@ -95,14 +95,30 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/update")
-    public String getUserUpdate(@ModelAttribute("updateUser") User hoidanit) {
+    public String getUserUpdate(@ModelAttribute("updateUser") @Valid User hoidanit,
+            BindingResult updateUserBindingResult,
+            @RequestParam("hoidanitFile") MultipartFile file) {
+
+        List<FieldError> errors = updateUserBindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            System.out.println(error.getField() + " - " + error.getDefaultMessage());
+        }
+        // validate
+        if (updateUserBindingResult.hasErrors()) {
+            return "admin/user/update";
+        }
 
         User currentUser = this.userService.getUserById(hoidanit.getId());
         if (currentUser != null) {
+            if (!file.isEmpty()) {
+                String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+                currentUser.setAvatar(avatar);
+            }
             currentUser.setAddress(hoidanit.getAddress());
             currentUser.setFullName(hoidanit.getFullName());
             currentUser.setPhone(hoidanit.getPhone());
             currentUser.setRole(this.userService.getRoleByName(hoidanit.getRole().getName()));
+
             this.userService.handleSaveUser(currentUser);
         }
         return "redirect:/admin/user";
