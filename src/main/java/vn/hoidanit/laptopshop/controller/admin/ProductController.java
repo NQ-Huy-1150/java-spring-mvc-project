@@ -57,7 +57,7 @@ public class ProductController {
 
         // validate
         if (newProductBindingResult.hasErrors()) {
-            return "/admin/product/create";
+            return "admin/product/create";
         }
 
         String image = this.uploadService.handleSaveUploadFile(file, "product");
