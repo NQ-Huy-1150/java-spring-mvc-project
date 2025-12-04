@@ -53,11 +53,10 @@ public class HomePageController {
             BindingResult bindingResult) {
         User user = this.userService.registerDTOtoUser(register);
 
-        List<FieldError> errors = bindingResult.getFieldErrors();
-        for (FieldError error : errors) {
-            System.out.println(">>>>> " + error.getField() + " - " + error.getDefaultMessage());
+        // validate
+        if (bindingResult.hasErrors()) {
+            return "client/auth/register";
         }
-
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
 
         user.setPassword(hashPassword);
