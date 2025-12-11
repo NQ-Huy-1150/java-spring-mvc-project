@@ -46,7 +46,7 @@ public class SecurityConfiguration {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder);
-        authProvider.setHideUserNotFoundExceptions(false);
+        // authProvider.setHideUserNotFoundExceptions(false);
 
         return authProvider;
     }

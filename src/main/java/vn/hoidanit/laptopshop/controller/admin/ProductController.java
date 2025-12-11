@@ -74,7 +74,7 @@ public class ProductController {
         Product product = this.productService.getProductById(id);
 
         model.addAttribute("product", product);
-        return "/admin/product/detail";
+        return "admin/product/detail";
     }
 
     @GetMapping("/admin/product/update/{id}")
