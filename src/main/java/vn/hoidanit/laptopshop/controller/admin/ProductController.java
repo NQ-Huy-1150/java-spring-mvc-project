@@ -71,7 +71,7 @@ public class ProductController {
 
     @GetMapping("/admin/product/{id}")
     public String getProductDetailPage(Model model, @PathVariable long id) {
-        Product product = this.productService.getProductById(id);
+        Product product = this.productService.getProductById(id).get();
 
         model.addAttribute("product", product);
         return "admin/product/detail";
@@ -79,7 +79,7 @@ public class ProductController {
 
     @GetMapping("/admin/product/update/{id}")
     public String updateProductPage(Model model, @PathVariable long id) {
-        Product product = this.productService.getProductById(id);
+        Product product = this.productService.getProductById(id).get();
         model.addAttribute("updateProduct", product);
         return "admin/product/update";
     }
@@ -97,7 +97,7 @@ public class ProductController {
         if (updateProductBindingResult.hasErrors()) {
             return "admin/product/update";
         }
-        Product currentProduct = this.productService.getProductById(hoidanit.getId());
+        Product currentProduct = this.productService.getProductById(hoidanit.getId()).get();
 
         if (currentProduct != null) {
             if (!file.isEmpty()) {

@@ -13,7 +13,9 @@ public class CartDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private int quantity;
+
     private double price;
 
     // cart id
@@ -26,6 +28,22 @@ public class CartDetail {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     public long getId() {
         return id;
@@ -49,6 +67,12 @@ public class CartDetail {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "CartDetail [id=" + id + ", quantity=" + quantity + ", price=" + price + ", cart=" + cart + ", product="
+                + product + "]";
     }
 
 }
