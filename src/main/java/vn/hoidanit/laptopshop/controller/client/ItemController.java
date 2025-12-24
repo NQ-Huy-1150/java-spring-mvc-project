@@ -1,5 +1,6 @@
 package vn.hoidanit.laptopshop.controller.client;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
@@ -11,7 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import vn.hoidanit.laptopshop.domain.Cart;
+import vn.hoidanit.laptopshop.domain.CartDetail;
 import vn.hoidanit.laptopshop.domain.Product;
+import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.service.ProductService;
 
 @Controller
@@ -41,7 +45,20 @@ public class ItemController {
     }
 
     @GetMapping("/cart")
-    public String getCartPage() {
+    public String getCartPage(Model model, HttpServletRequest request) {
+        User user = new User();
+        HttpSession session = request.getSession(false);
+        long id = (long) session.getAttribute("id");
+        user.setId(id);
+        Cart cart = this.productService.fetchByUser(user);
+        List<CartDetail> cartDetails = cart.getCartDetails();
+        model.addAttribute("cartDetails", cartDetails);
+
+        double total = 0;
+        for (CartDetail cartDetail : cartDetails) {
+            total += cartDetail.getPrice() * cartDetail.getQuantity();
+        }
+        model.addAttribute("total", total);
         return "client/cart/show";
     }
 }
