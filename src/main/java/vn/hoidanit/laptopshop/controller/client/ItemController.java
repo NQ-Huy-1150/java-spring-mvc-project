@@ -1,5 +1,6 @@
 package vn.hoidanit.laptopshop.controller.client;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,7 +52,7 @@ public class ItemController {
         long id = (long) session.getAttribute("id");
         user.setId(id);
         Cart cart = this.productService.fetchByUser(user);
-        List<CartDetail> cartDetails = cart.getCartDetails();
+        List<CartDetail> cartDetails = cart == null ? new ArrayList<CartDetail>() : cart.getCartDetails();
         model.addAttribute("cartDetails", cartDetails);
 
         double total = 0;
