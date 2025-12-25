@@ -122,6 +122,16 @@ public class ProductService {
             // cap nhat lai session
             session.setAttribute("sum", sum);
         }
+    }
 
+    public void handleUpdateCartBeforeCheckout(List<CartDetail> cartDetails) {
+        for (CartDetail cartDetail : cartDetails) {
+            Optional<CartDetail> cdOptional = this.cartDetailRepository.findById(cartDetail.getId());
+            if (cdOptional.isPresent()) {
+                CartDetail currentCardDetail = cdOptional.get();
+                currentCardDetail.setQuantity(cartDetail.getQuantity());
+                this.cartDetailRepository.save(currentCardDetail);
+            }
+        }
     }
 }
