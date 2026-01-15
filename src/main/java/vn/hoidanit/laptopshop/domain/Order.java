@@ -27,14 +27,6 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    // many-to-many
-    // @ManyToMany
-    // @JoinTable(name = "oder_products", joinColumns = { @JoinColumn(name =
-    // "oder_id") }, inverseJoinColumns = {
-    // @JoinColumn(name = "product_id") })
-    // private List<Product> products;
-
-    // 1 order -> many to -> many order_detail
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;
 
@@ -42,6 +34,22 @@ public class Order {
     private String receiverAddress;
     private String receiverPhone;
     private String status;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     public User getUser() {
         return user;
@@ -89,27 +97,6 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    @Override
-    public String toString() {
-        return "Oder [id=" + id + ", totalPrice=" + totalPrice + "]";
     }
 
 }
