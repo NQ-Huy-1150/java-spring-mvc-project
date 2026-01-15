@@ -3,10 +3,7 @@ package vn.hoidanit.laptopshop.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.jasper.tagplugins.jstl.core.If;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
 import vn.hoidanit.laptopshop.domain.Cart;
@@ -204,5 +201,9 @@ public class ProductService {
             }
 
         }
+    }
+
+    public long countProducts() {
+        return this.productRepository.count();
     }
 }

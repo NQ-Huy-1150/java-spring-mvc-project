@@ -57,4 +57,8 @@ public class OrderService {
             handleSaveOrder(updateOrder);
         }
     }
+
+    public long countOrders() {
+        return this.orderRepository.count();
+    }
 }
